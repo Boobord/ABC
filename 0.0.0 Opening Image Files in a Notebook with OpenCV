@@ -1,0 +1,61 @@
+#install opencv in Jupyter notebook
+!pip install opencv-python
+
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+# WONT GIVE ERROR! GIVES NONE INSTEAD!!!
+# WONT GIVE ERROR! GIVES NONE INSTEAD!!!
+img = cv2.imread("somepath/20210508_181350.jpg")
+img
+plt.imshow(img_bgr)
+# changing BGR to RGB 
+img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+plt.imshow(img_rgb)
+
+change to Gray color
+img_gray = cv2.imread('somepath/20210508_181350.jpg',cv2.IMREAD_GRAYSCALE)
+plt.imshow(img_gray)
+
+#Resize the pic
+img_rgb.shape
+# width, height, color channels
+
+img =cv2.resize(img_rgb,(1300,275))
+plt.imshow(img)
+
+Resize by ratio
+w_ratio = 0.5
+h_ratio = 0.5
+new_img =cv2.resize(img_rgb,(0,0),img,w_ratio,h_ratio)
+plt.imshow(new_img)
+
+#Flipping image
+%matplotlib inline
+# Along central x axis
+new_img = cv2.flip(new_img,0)
+plt.imshow(new_img)
+
+# Along central y axis
+new_img = cv2.flip(new_img,1)
+plt.imshow(new_img)
+
+# Along both axis
+new_img = cv2.flip(new_img,-1)
+plt.imshow(new_img)
+
+#Saving Image Files
+type(new_img)
+
+cv2.imwrite('my_new_picture.jpg',new_img)
+
+fig = plt.figure(figsize=(10,8))
+ax = fig.add_subplot(111)
+ax.imshow(new_img)
+
+
+
+
+
