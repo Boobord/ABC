@@ -1,0 +1,28 @@
+# # Image Basics Assessment 
+# 
+# ## Complete the Tasks in bold below. Keep in mind, you may need to run some of these tasks as Python scripts.
+
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+get_ipython().run_line_magic('matplotlib', 'inline')
+
+img = cv2.imread("../DATA/ai.jpg")
+
+# Wrong RGB Order!
+plt.imshow(img)
+
+img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+plt.imshow(img_rgb)
+
+# #### TASK: Flip the image upside down and display it in the notebook.
+
+new_img = img_rgb
+new_img = cv2.flip(new_img,0)
+plt.imshow(new_img)
+
+# #### TASK: Draw an empty RED rectangle around the dogs face and display the image in the notebook.
+plt.imshow(img_rgb)
+
+cv2.rectangle(img_rgb,pt1=(240,200),pt2=(550,550),color=(255,0,0),thickness=10)
+plt.imshow(img_rgb)
