@@ -1,0 +1,43 @@
+# # Gradients
+# 
+# Understanding gradients will allow us to eventually understand edge detection which we will use later on, since its an important aspect of object detection in general.
+# Make sure to watch the lecture video for the full overview!
+
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+get_ipython().run_line_magic('matplotlib', 'inline')
+
+img = cv2.imread('../DATA/periodictable.png',0)
+
+def display_img(img):
+    fig = plt.figure(figsize=(12,10))
+    ax = fig.add_subplot(111)
+    ax.imshow(img,cmap='gray')
+
+display_img(img)
+
+sobelx = cv2.Sobel(img,cv2.CV_64F,1,0,ksize=5)
+display_img(sobelx)
+
+sobely = cv2.Sobel(img,cv2.CV_64F,0,1,ksize=5)
+display_img(sobely)
+
+laplacian = cv2.Laplacian(img,cv2.CV_64F)
+display_img(laplacian)
+
+# ## Combining Previous Ideas
+# 
+# Let's play around with these images with some of the other ideas we've already seen!
+
+# ### Blending Images
+blended = cv2.addWeighted(src1=sobelx,alpha=0.5,src2=sobely,beta=0.5,gamma=0)
+display_img(blended)
+
+# ### Thresholds
+
+ret,th1 = cv2.threshold(img,100,255,cv2.THRESH_BINARY)
+display_img(th1)
+
+ret,th1 = cv2.threshold(blended,100,255,cv2.THRESH_BINARY_INV)
+display_img(th1)
